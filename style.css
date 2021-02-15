@@ -1,0 +1,9 @@
+img {
+    width: 100px;
+    height: 100px;
+}
+
+td,
+th {
+    border: solid black;
+}
