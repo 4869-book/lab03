@@ -15,21 +15,28 @@ function addX(evt){
     evt.currentTarget.removeEventListener('click', addX);
     var x  = parseInt(evt.currentTarget.id);
     del(x);
+    
+    playerTern.push(x)
+    
+    
+    round+=1;
+    console.log("Round : "+round);
+    if(round>=3 && checkwin()==true){
+        checkwin();
+        return 0;
+    }else if(round>=5) {
+        return document.getElementById('score1').innerHTML="draw";
+    }
     var rand = array[Math.floor(Math.random() * array.length)];
+    botTern.push(rand);
     del(rand);
     const image = document.getElementById(rand);
     image.src = 'https://oer.learn.in.th/search_detail/ZipDownload/23599';
     image.removeEventListener('click', addX);
-    botTern.push(rand);
-    playerTern.push(x)
-    console.log(botTern);
-    console.log(playerTern);
+    console.log("Conputer walk : "+botTern);
+    console.log("Player walk : "+playerTern);
+    console.log("sum="+checkwin());
     
-    round+=1;
-    console.log(round);
-    if(round>=3){
-        checkwin();
-    }
 }
 
 function del(num){
@@ -44,13 +51,16 @@ function checkwin(){
     for(i=0;i<win.length;i++){
         const result1 = win[i].every(val => playerTern.includes(val));
         const result2 = win[i].every(val => botTern.includes(val));
+        console.log("player walk : "+result1);
+        console.log("computer walk : "+result2);
+        if(result2==true){
+            document.getElementById('score2').innerHTML="Computer Won";
+            return true;
+        }
         if(result1==true){
             document.getElementById('score1').innerHTML="Player Won";
+            return true;
         }
-        else if(result2==true){
-            document.getElementById('score2').innerHTML="Computer Won";
-        }
-        
     }
 }
 
