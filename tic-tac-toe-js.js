@@ -46,7 +46,6 @@ function checkwin(){
         const result2 = win[i].every(val => botTern.includes(val));
         if(result1==true){
             document.getElementById('score1').innerHTML="Player Won";
-            stop;
         }
         else if(result2==true){
             document.getElementById('score2').innerHTML="Computer Won";
